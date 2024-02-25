@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling", "versioningit"]
+build-backend = "hatchling.build"
+
+[project]
+dynamic = ["version"]
+name = "xiaomi-ndef"
+requires-python = ">=3.10"
+authors = [
+    { name = "XFY9326" }
+]
+maintainers = [
+    { name = "XFY9326" }
+]
+description = "Encode and decode NDEF message using Xiaomi NFC protocol."
+readme = "README.md"
+license = "MIT"
+keywords = ["nfc", "ndef", "ndef-library", "xiaomi", "mi"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10"
+]
+dependencies = [
+    "pyndef>=1.0.1",
+    "protobuf>=4.25.3",
+]
+
+[tool.pytest.ini_options]
+pythonpath = "src"
+
+[tool.hatch.build.targets.sdist]
+exclude = [".github/", "/proto/", "/requirements.txt", "/main.py", "/build_protobuf.py"]
+
+[tool.hatch.version]
+source = "versioningit"
