@@ -1,7 +1,7 @@
 # Xiaomi NDEF
 
 ![!python-versions](https://img.shields.io/badge/Python-3.10-blue)
-[![Pypi](https://img.shields.io/pypi/v/xiaomi_ndef?color=orange)](https://pypi.org/project/xiaomi_ndef/)
+[![Pypi](https://img.shields.io/pypi/v/xiaomi-ndef?color=orange)](https://pypi.org/project/xiaomi-ndef/)
 
 [![Test](https://github.com/XFY9326/XiaomiNDEF/actions/workflows/test.yml/badge.svg)](https://github.com/XFY9326/XiaomiNDEF/actions/workflows/test.yml)
 [![Release](https://github.com/XFY9326/XiaomiNDEF/actions/workflows/release.yml/badge.svg)](https://github.com/XFY9326/XiaomiNDEF/actions/workflows/release.yml)
@@ -9,6 +9,10 @@
 Encode and decode NDEF message using Xiaomi NFC protocol.
 
 ## Usage
+
+```shell
+pip install xiaomi-ndef
+```
 
 ```python
 from pyndef import NdefMessage
@@ -73,6 +77,20 @@ XiaomiNfcPayload(
     )
 )
 ```
+
+## Related Projects
+
+- [PyNdef](https://github.com/XFY9326/PyNdef)
+- [MiLinkNFC](https://github.com/XFY9326/MiLinkNFC)
+
+## Reference
+
+| Package name                    | Version                    |
+|---------------------------------|----------------------------|
+| `com.xiaomi.mi_connect_service` | `3.1.453.10`               |
+| `com.milink.service`            | `15.0.5.0.ceaac61.2919843` |
+| `com.xiaomi.smarthome`          | `9.1.501`                  |
+| `com.android.nfc`               | `14`                       |
 
 ## License
 
