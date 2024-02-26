@@ -110,16 +110,19 @@ class XiaomiNfcTestCase(unittest.TestCase):
         payload = self._test_protocol(nfc.V1NfcProtocol, self._TEST_PAYLOAD_V1_BYTES)
         self.assertEqual(self._TEST_PAYLOAD_V1_BYTES, MiConnectData.from_nfc_payload(payload).to_bytes())
         self.assertEqual(self._TEST_PAYLOAD_V1.encode(), payload.appData.encode())
+        self.assertEqual(len(self._TEST_PAYLOAD_V1.encode()), payload.appData.size())
 
     def test_v2_protocol(self) -> None:
         payload = self._test_protocol(nfc.V2NfcProtocol, self._TEST_PAYLOAD_V2_BYTES)
         self.assertEqual(self._TEST_PAYLOAD_V2_BYTES, MiConnectData.from_nfc_payload(payload).to_bytes())
         self.assertEqual(self._TEST_PAYLOAD_V2.encode(), payload.appData.encode())
+        self.assertEqual(len(self._TEST_PAYLOAD_V2.encode()), payload.appData.size())
 
     def test_handoff_protocol(self) -> None:
         payload = self._test_protocol(nfc.HandoffNfcProtocol, self._TEST_PAYLOAD_HANDOFF_BYTES)
         self.assertEqual(self._TEST_PAYLOAD_HANDOFF_BYTES, MiConnectData.from_nfc_payload(payload).to_bytes())
         self.assertEqual(self._TEST_PAYLOAD_HANDOFF.encode(), payload.appData.encode())
+        self.assertEqual(len(self._TEST_PAYLOAD_HANDOFF.encode()), payload.appData.size())
 
 
 if __name__ == "__main__":

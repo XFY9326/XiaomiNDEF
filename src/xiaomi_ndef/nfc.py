@@ -43,7 +43,7 @@ class _V1NfcProtocol(XiaomiNfcProtocol[NfcTagAppData]):
         return NfcTagAppData.decode(BytesIO(data))
 
     def __str__(self) -> str:
-        return "V1"
+        return self.__repr__()
 
     def __repr__(self) -> str:
         return "V1"
@@ -57,7 +57,7 @@ class _V2NfcProtocol(XiaomiNfcProtocol[NfcTagAppData]):
         return NfcTagAppData.decode(BytesIO(data))
 
     def __str__(self) -> str:
-        return "V2"
+        return self.__repr__()
 
     def __repr__(self) -> str:
         return "V2"
@@ -71,7 +71,7 @@ class _HandoffNfcProtocol(XiaomiNfcProtocol[HandoffAppData]):
         return HandoffAppData.decode(BytesIO(data))
 
     def __str__(self) -> str:
-        return "Handoff"
+        return self.__repr__()
 
     def __repr__(self) -> str:
         return "Handoff"

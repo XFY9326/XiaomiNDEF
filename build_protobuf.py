@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).parent
+PROJECT_ROOT = Path(__file__).parent.absolute()
 
 PROTOC_PATH = "protoc"
 PROTO_DIR = PROJECT_ROOT.joinpath("proto")
@@ -12,11 +12,16 @@ if __name__ == "__main__":
         print("protoc not found")
         exit(1)
 
-    old_files = [i for i in os.listdir(PYTHON_OUTPUT_DIR) if i.endswith(("_pb2.py", "_pb2.pyi"))]
-    if len(old_files) > 0:
-        print("Removing old protobuf files")
-        for file in old_files:
-            os.remove(PYTHON_OUTPUT_DIR.joinpath(file))
+    if PYTHON_OUTPUT_DIR.exists():
+        old_files = [i for i in os.listdir(PYTHON_OUTPUT_DIR) if i.endswith(("_pb2.py", "_pb2.pyi"))]
+        if len(old_files) > 0:
+            print("Removing old protobuf files")
+            for file in old_files:
+                os.remove(PYTHON_OUTPUT_DIR.joinpath(file))
+    else:
+        print("Creating proto package")
+        PYTHON_OUTPUT_DIR.mkdir()
+        PYTHON_OUTPUT_DIR.joinpath("__init__.py").touch()
 
     print("Creating protobuf files")
     os.system(" ".join([
@@ -24,5 +29,5 @@ if __name__ == "__main__":
         f"--proto_path=\"{PROTO_DIR}\"",
         f"--pyi_out=\"{PYTHON_OUTPUT_DIR}\"",
         f"--python_out=\"{PYTHON_OUTPUT_DIR}\"",
-        f"\"{PROTO_DIR}/*\""
+        f"\"{PROTO_DIR.joinpath('*')}\""
     ]))
