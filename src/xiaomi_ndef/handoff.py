@@ -90,13 +90,13 @@ class HandoffAppData(AppData):
     @staticmethod
     def new_payloads_map(data: Mapping[PayloadKey, bytes] | Iterable[tuple[PayloadKey, bytes]]) -> UInt8BytesMap:
         if isinstance(data, Mapping):
-            data: Mapping[PayloadKey, bytes]
-            return UInt8BytesMap((k.key_value, v) for k, v in data.items())
+            items = data.items()
         elif isinstance(data, Iterable):
-            data: Iterable[tuple[PayloadKey, bytes]]
-            return UInt8BytesMap((k.key_value, v) for k, v in data)
+            items = data
         else:
             raise TypeError(f"Unsupported data type: {type(data)}")
+        items: Iterable[tuple[PayloadKey, bytes]]
+        return UInt8BytesMap((k.key_value, v) for k, v in items)
 
     @staticmethod
     def encode_payloads_map(data: OrderedDict[PayloadKey, bytes]) -> bytes:

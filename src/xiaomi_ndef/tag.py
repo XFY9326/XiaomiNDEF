@@ -315,13 +315,13 @@ class NfcTagDeviceRecord(NfcTagRecord):
     @staticmethod
     def new_attributes_map(data: Mapping[DeviceAttribute, bytes] | Iterable[tuple[DeviceAttribute, bytes]]) -> UInt16BytesMap:
         if isinstance(data, Mapping):
-            data: Mapping[DeviceAttribute, bytes]
-            return UInt16BytesMap((k.attribute_value, v) for k, v in data.items())
+            items = data.items()
         elif isinstance(data, Iterable):
-            data: Iterable[tuple[DeviceAttribute, bytes]]
-            return UInt16BytesMap((k.attribute_value, v) for k, v in data)
+            items = data
         else:
             raise TypeError(f"Unsupported data type: {type(data)}")
+        items: Iterable[tuple[DeviceAttribute, bytes]]
+        return UInt16BytesMap((k.attribute_value, v) for k, v in items)
 
     @staticmethod
     def decode_attributes_map(buffer: bytes) -> OrderedDict[DeviceAttribute, bytes]:
