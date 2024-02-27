@@ -144,7 +144,7 @@ def new_handoff_screen_mirror(
         handoff.PayloadKey.BLUETOOTH_MAC.new_pair(bluetooth_mac)
     ]
     if enable_lyra:
-        payloads.append(handoff.PayloadKey.EXT_ABILITY.new_pair(b"\x00\x00\x00\x01"))
+        payloads.append(handoff.PayloadKey.EXT_ABILITY.new_pair(b"\x01"))
     return new_handoff(
         device_type=device_type,
         payloads_map=handoff.HandoffAppData.new_payloads_map(payloads)

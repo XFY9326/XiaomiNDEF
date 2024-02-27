@@ -1,4 +1,5 @@
 from xiaomi_ndef import *
+from xiaomi_ndef import xiaomi, handoff
 
 BYTES_DATA = bytes.fromhex(
     "0a4b0801100d2201032a094d492d4e4643544147380f4a3127" +
@@ -53,6 +54,20 @@ def main() -> None:
             )
         ).to_bytes().hex()
     )
+    print(MiConnectData.from_nfc_payload(
+        xiaomi.new_handoff_screen_mirror(
+            device_type=handoff.DeviceType.PC,
+            bluetooth_mac="00:00:00:00:00:00",
+            enable_lyra=True
+        )[1]
+    ).to_bytes().hex())
+    print(MiConnectData.from_nfc_payload(
+        xiaomi.new_handoff_screen_mirror(
+            device_type=handoff.DeviceType.PC,
+            bluetooth_mac="00:00:00:00:00:00",
+            enable_lyra=False
+        )[1]
+    ).to_bytes().hex())
 
 
 if __name__ == "__main__":
